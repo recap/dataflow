@@ -1,0 +1,26 @@
+{
+  "name": "dataflow",
+  "version": "0.1.0",
+  "description": "A dataflow model for async programming.",
+  "main": "none",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recap/dataflow.git"
+  },
+  "keywords": [
+    "dataflow",
+    "async"
+  ],
+  "author": "Reggie Cushing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/recap/dataflow/issues"
+  },
+  "homepage": "https://github.com/recap/dataflow#readme"
+}
