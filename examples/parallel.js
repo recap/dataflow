@@ -1,16 +1,14 @@
 const dataflow = require('../src/dataflow');
 
-function mochcall(param, cb) {
-	if (!param) {
+function mochcall(params, cb) {
+	if (!params) {
 		setTimeout(function() {
 			cb("error", false);
 		}, 0);
 	} else {
 		setTimeout(function() {
-			cb(null, {
-				"body": "some object"
-			});
-		}, param);
+			cb(null, "hello from " + params.text);
+		}, params.timeout);
 	}
 }
 
@@ -23,34 +21,54 @@ new dataflow.Dataflow()
 	.create({
 		name: "call1"
 	}, (data, t) => {
-		mochcall(data.value, t(["final:port1"], ["error"]));
+		const params = {
+				timeout: data.value,
+				text: "call 1"
+		};
+		mochcall(params, t(["final:port1"], ["error"]));
 	})
 	.create({
 		name: "call2"
 	}, (data, t) => {
-		mochcall(data.value, t(["final:port2"], ["error"]));
+		const params = {
+				timeout: data.value,
+				text: "call 2"
+		};
+		mochcall(params, t(["final:port2"], ["error"]));
 	})
 	.create({
 		name: "call3"
 	}, (data, t) => {
-		mochcall(data.value, t(["final:port3"], ["error"]));
+		const params = {
+				timeout: data.value,
+				text: "call 3"
+		};
+		mochcall(params, t(["final:port3"], ["error"]));
 	})
 	.create({
 		name: "call4"
 	}, (data, t) => {
-		mochcall(data.value, t(["final:port4"], ["error"]));
+		const params = {
+				timeout: data.value,
+				text: "call 4"
+		};
+		mochcall(params, t(["final:port4"], ["error"]));
 	})
 	.create({
 		name: "call5"
 	}, (data, t) => {
-		mochcall(data.value, t(["final:port5"], ["error"]));
+		const params = {
+				timeout: data.value,
+				text: "call 5"
+		};
+		mochcall(params, t(["final:port5"], ["error"]));
 	})
 	.create({
 		name: 'timeout'
 	}, (data, t) => {
 		setTimeout(() => {
 			t(['final:timeout'], [])(null, "Timed out");
-		}, 10);
+		}, 1000);
 	})
 	.create({
 		name: "error"

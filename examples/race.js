@@ -30,7 +30,7 @@ new dataflow.Dataflow()
 	}, (data, t) => {
 		setTimeout(() => {
 			t(['final:port2'], [])(null, "Timed out");
-		}, 1000);
+		}, 10);
 	})
 	.create({
 		name: "error"
@@ -42,7 +42,6 @@ new dataflow.Dataflow()
 		name: 'final',
 		ports: ['port1', 'port2'],
 		expression: 'port1 ^ port2'
-		//expression: '(!port1 & port2) | (port1 & !port2)'
 	}, (data, t, state) => {
 		console.log("final data: ", data);
 	})

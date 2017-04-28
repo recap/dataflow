@@ -71,7 +71,6 @@ Dataflow.prototype = {
 			}
 		}
 		let that = this;
-		//console.log("firing: " + state + ", data: " + JSON.stringify(cntx.values));
 		f(cntx.values, function(progressStates, errorStates) {
 			return function(e, d) {
 				progressStates.forEach((s) => {
