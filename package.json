@@ -1,6 +1,6 @@
 {
   "name": "dataflowjs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A dataflow model for async programming.",
   "main": "src/dataflow.js",
   "directories": {
