@@ -2,12 +2,12 @@
   "name": "dataflowjs",
   "version": "0.1.1",
   "description": "A dataflow model for async programming.",
-  "main": "none",
+  "main": "src/dataflow.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "test": "src/dataflow.js"
+    "test": "test/basic.js"
   },
   "repository": {
     "type": "git",
