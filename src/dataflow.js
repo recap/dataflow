@@ -5,6 +5,7 @@ var Dataflow = function() {
 	this.fMap = {};
 	this.tMap = {};
 	this.dMap = {};
+	this.lMap = {};
 	this.dMap['default'] = {
 		state: {
 			pstate: null,
@@ -40,7 +41,12 @@ Dataflow.prototype = {
 			details: details
 		};
 		this.dMap[details.name] = this.dObj;
+		this.lMap[details.name] = [];
 		return this;
+	},
+	after: function(state, fn) {
+		var that = this;
+		that.lMap[state].push(fn);
 	},
 	fire: function(resource, data, pstate = 'begin') {
 		const state = resource.split(':')[0];
@@ -73,6 +79,9 @@ Dataflow.prototype = {
 		let that = this;
 		f(cntx.values, function(progressStates, errorStates) {
 			return function(e, d) {
+				that.lMap[state].forEach((l)=> {
+					l(d);
+				});
 				progressStates.forEach((s) => {
 					const cp = progressStates.length > 1 ? deepCopy(cntx) : cntx;
 					cp.state.pstate = state

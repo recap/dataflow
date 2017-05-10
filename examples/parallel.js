@@ -12,7 +12,7 @@ function mochcall(params, cb) {
 	}
 }
 
-new dataflow.Dataflow()
+var dd = new dataflow.Dataflow()
 	.create({
 		name: "start"
 	}, (data, t) => {
@@ -82,5 +82,14 @@ new dataflow.Dataflow()
 		expression: '(port1 & port2 & port3 & port4 & port5) ^ timeout'
 	}, (data, t, state) => {
 		console.log("final data: ", data);
-	})
-	.fire("start", 100);
+		t([], [])(null, "the end");
+	});
+
+dd.after('call1', function(data) {
+	console.log("after");
+	console.log(data);
+});
+dd.after('final', function(data) {
+	console.log("after final");
+});
+dd.fire("start", 100);
